@@ -14,6 +14,8 @@ npm run dev --> ejecute el proyecto utilizando "nodemon" para cambios dinamicos 
 
 # Esquema e inserts
 
+```sql
+
 drop table usuarios;
 drop table publicacion;
 drop table etiqueta;
@@ -83,7 +85,7 @@ create table integrantes (
    fo_id    integer
 );
 
-# Asociar restricciones para que un usuario solo reaccione 
+-- Asociar restricciones para que un usuario solo reaccione 
 create table reacciones (
    re_id integer generated always as identity primary key,
    
@@ -91,9 +93,7 @@ create table reacciones (
    pu_id integer
 );
 
-# Seccion de poblacion !
-
-```sql
+-- Seccion de poblacion !
 
 -- 1. Insertar 10 usuarios
 INSERT INTO usuarios (us_nombre, us_apellido, us_email, us_contrasena, us_contacto) VALUES
