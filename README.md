@@ -95,7 +95,7 @@ create table reacciones (
 
 ```sql
 
-# 1. Insertar 10 usuarios
+-- 1. Insertar 10 usuarios
 INSERT INTO usuarios (us_nombre, us_apellido, us_email, us_contrasena, us_contacto) VALUES
 ('María', 'Gómez', 'maria@gomez.com', 'pass123', 911111111),
 ('Carlos', 'López', 'carlos@lopez.com', 'pass456', 922222222),
@@ -108,18 +108,18 @@ INSERT INTO usuarios (us_nombre, us_apellido, us_email, us_contrasena, us_contac
 ('Elena', 'Torres', 'elena@torres.com', 'pass567', 999999999),
 ('Diego', 'Ramírez', 'diego@ramirez.com', 'pass890', 900000000);
 
-# 2. Insertar etiquetas
+-- 2. Insertar etiquetas
 INSERT INTO etiqueta (et_nombre) VALUES
 ('Perro'), ('Gato'), ('Pequeño'), ('Mediano'), ('Grande'),
 ('Blanco'), ('Negro'), ('Marrón'), ('Dorado'), ('Siamés'),
 ('Pastor Alemán'), ('Persa'), ('Canario'), ('Loro');
 
-# 3. Insertar 2 foros
+-- 3. Insertar 2 foros
 INSERT INTO foro (fo_titulo, fo_descripcion, fo_eliminacion, us_id) VALUES
 ('Foro Mascotas Bogotá', 'Comunidad de mascotas perdidas en Bogotá', false, 1),
 ('Foro Mascotas Medellín', 'Comunidad de mascotas perdidas en Medellín', false, 3);
 
-# 4. Insertar 12 publicaciones (4 asociadas a foros)
+-- 4. Insertar 12 publicaciones (4 asociadas a foros)
 INSERT INTO publicacion (pu_titulo, pu_descripcion, pu_image, pu_fecha, pu_eliminacion, pu_estado, us_id, fo_id) VALUES
 ('Bobby desaparecido', 'Perro pastor alemán perdido en parque nacional', 'https://example.com/bobby.jpg', '2023-05-10', false, false, 2, 1),
 ('Gato siamés extraviado', 'Max desapareció cerca del centro comercial', 'https://example.com/max.jpg', '2023-05-11', false, false, 4, 1),
@@ -134,7 +134,7 @@ INSERT INTO publicacion (pu_titulo, pu_descripcion, pu_image, pu_fecha, pu_elimi
 ('Tortuga', 'Desapareció del jardín de la casa', 'https://example.com/tortuga.jpg', '2023-05-20', false, false, 3, NULL),
 ('Perro salchicha', 'Last seen near Universidad Nacional', 'https://example.com/salchicha.jpg', '2023-05-21', false, false, 4, NULL);
 
-# 5. Asignar etiquetas a publicaciones
+-- 5. Asignar etiquetas a publicaciones
 INSERT INTO publicacion_etiqueta (et_id, pu_id) VALUES
 (11, 1), (5, 1), (8, 1),   -- Pastor Alemán, Grande, Marrón
 (10, 2), (3, 2), (6, 2),   -- Siamés, Pequeño, Blanco
@@ -149,12 +149,12 @@ INSERT INTO publicacion_etiqueta (et_id, pu_id) VALUES
 (3, 11), (8, 11),          -- Pequeño, Marrón
 (1, 12), (4, 12), (8, 12); -- Perro, Mediano, Marrón
 
-# 6. Insertar integrantes a foros
+-- 6. Insertar integrantes a foros
 INSERT INTO integrantes (in_fecha, us_id, fo_id) VALUES
 ('2023-01-15', 1, 1), ('2023-01-16', 2, 1), ('2023-01-17', 3, 1), ('2023-01-18', 4, 1),
 ('2023-02-01', 3, 2), ('2023-02-02', 5, 2), ('2023-02-03', 6, 2), ('2023-02-04', 7, 2);
 
-# 7. Insertar comentarios (mínimo 2 por publicación)
+-- 7. Insertar comentarios (mínimo 2 por publicación)
 INSERT INTO comentario (cm_contenido, cm_fecha, us_id, pu_id) VALUES
 ('Lo vi ayer en el parque', '2023-05-22', 3, 1),
 ('Contacten al número 311555555', '2023-05-23', 4, 1),
@@ -198,20 +198,22 @@ INSERT INTO reacciones (us_id, pu_id) VALUES
 
 ```
 
-/*
-Usuarios: 10 usuarios con datos completos
-Etiquetas: 14 etiquetas relacionadas con características de animales
-Foros: 2 foros con diferentes administradores
+### Datos cargados en la base
 
-Publicaciones:
-12 publicaciones de mascotas perdidas
-4 publicaciones asociadas a foros (2 por foro)
-8 publicaciones sin foro
-Publicación-Etiqueta: Relaciones múltiples para caracterizar cada animal
+- **Usuarios:** 10 usuarios con datos completos  
+- **Etiquetas:** 14 etiquetas relacionadas con características de animales  
+- **Foros:** 2 foros con diferentes administradores  
 
-Integrantes: 4 usuarios en cada foro (8 registros total)
-Comentarios: 2 comentarios por publicación (24 comentarios total)
-Reacciones: Mínimo 3 reacciones por publicación (algunas tienen 4)
+**Publicaciones:**
+- 12 publicaciones de mascotas perdidas  
+- 4 publicaciones asociadas a foros (2 por foro)  
+- 8 publicaciones sin foro  
+- **Publicación–Etiqueta:** relaciones múltiples para caracterizar cada animal  
 
-Todas las publicaciones están activas (pu_estado = true) y no eliminadas (pu_eliminacion = false). Las fechas están en orden cronológico y las imágenes usan URLs de ejemplo.
+**Integrantes:** 4 usuarios en cada foro (8 registros total)  
+**Comentarios:** 2 comentarios por publicación (24 en total)  
+**Reacciones:** mínimo 3 reacciones por publicación (algunas tienen 4)  
+
+Todas las publicaciones están **activas** (`pu_estado = true`) y **no eliminadas** (`pu_eliminacion = false`).  
+Las fechas están en orden cronológico y las imágenes usan URLs de ejemplo.
 
