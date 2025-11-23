@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjM4MzE2NDIsImV4cCI6MTc2MzgzNTI0Mn0.NOalwpnTczcW0zm7-RbReuxcAl7RPmbws2zVGBo0Tpg
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjM4NTE3MjQsImV4cCI6MTc2Mzg1NTMyNH0.sJyHO46WR1K5_SW0Hg0vE-VLpTBrNNLQkEv6R6eHDkA
 
 ###Obtener todas las publicaciones
 POST http://localhost:3000/pets/auth/login
@@ -22,7 +22,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "pu_titulo": "Se me escapo el byron!!!",
-    "pu_descripcion": "Se fue a bolivia a recuperar el auto",
-    "pu_imagen": "byron.png"
+    "pu_titulo": "Triteza se escapo",
+    "pu_descripcion": "tristeza esta triste",
+    "pu_ubicacion": "Bolivia, la paz",
+    "pu_imagen": "sad.png"
 }

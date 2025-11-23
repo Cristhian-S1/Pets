@@ -29,9 +29,9 @@ export const getPublicaciones = async (req, res) => {
 
 export async function crearPublicacion(req, res) {
   try {
-    const { pu_titulo, pu_descripcion, pu_imagen } = req.body;
+    const { pu_titulo, pu_descripcion, pu_imagen, pu_ubicacion } = req.body;
 
-    if (!pu_titulo || !pu_descripcion || !pu_imagen) {
+    if (!pu_titulo || !pu_descripcion || !pu_imagen || !pu_ubicacion) {
       return res
         .status(400)
         .json({ cod: 400, msj: "Datos incompletos", datos: null });
@@ -41,6 +41,7 @@ export async function crearPublicacion(req, res) {
       pu_titulo,
       pu_descripcion,
       pu_imagen,
+      pu_ubicacion,
       req.id
     );
 
