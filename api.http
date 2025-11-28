@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjM4NTE3MjQsImV4cCI6MTc2Mzg1NTMyNH0.sJyHO46WR1K5_SW0Hg0vE-VLpTBrNNLQkEv6R6eHDkA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjQyOTc3NDUsImV4cCI6MTc2NDMwMTM0NX0.ubrj54mxnAGfCS6JPWfsFR8oaqLF9rTjUcEVwg4bNFU
 
 ###Obtener todas las publicaciones
 POST http://localhost:3000/pets/auth/login
@@ -7,6 +7,17 @@ Content-Type: application/json
 {
     "email": "maria@gomez.com",
     "password": "pass123"
+}
+
+###Registro de usuario
+POST http://localhost:3000/pets/auth/register
+Content-Type: application/json
+
+{
+    "us_nombre": "Tiara",
+    "us_email": "tiara@tiara.com",
+    "us_contrasena": "pass123",
+    "us_contacto": "987654321"
 }
 
 ###Acceder a una ruta protegida, el token obtiene al realizar login

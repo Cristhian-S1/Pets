@@ -11,9 +11,7 @@ export const obtenerPublicaciones = async () => {
        pu_fecha,
        pu_estado,
        pu_ubicacion,
-       us_nombre
-       || ' '
-       || us_apellido as nombre,
+       us_nombre,
        us_contacto
   from publicacion
   join usuarios
@@ -50,7 +48,7 @@ export async function getAllPosts() {
   const resultado = await pool.query(`
     SELECT 
         p.*,
-        u.us_nombre || ' ' || u.us_apellido AS us_nombre_completo,
+        u.us_nombre AS us_nombre_completo,
         u.us_contacto,
         COALESCE(
             (
