@@ -30,6 +30,11 @@ Authorization: Bearer {{token}}
 ###Obtener todas las publicaciones
 GET http://localhost:3000/pets/publicaciones
 
+###Obtener todas las publicaciones
+GET http://localhost:3000/pets/verDetalles/1
+
+petsRouter.get("/verDetalles", obtenerDetalles);
+
 ###Crear una publicacion
 POST http://localhost:3000/pets/publicaciones/crear
 Authorization: Bearer {{token}}

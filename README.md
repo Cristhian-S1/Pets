@@ -62,6 +62,13 @@ create table publicacion (
    fo_id          integer
 );
 
+create table publicacion_imagen(
+   pui_id integer generated always as identity primary key,
+   pui_url varchar(254),
+
+   pu_id integer
+);
+
 create table etiqueta (
    et_id     integer generated always as identity primary key,
    et_nombre varchar(56)

@@ -8,7 +8,7 @@ export const getPublicaciones = async (req, res) => {
   try {
     const publicaciones = await modeloPublicacion.obtenerPublicaciones();
 
-    if (!publicaciones) {
+    if (!publicaciones || publicaciones.length === 0) {
       return res.status(404).json({
         cod: 404,
         msj: "Problema al obtener las publicaciones.",
@@ -61,13 +61,11 @@ export async function crearPublicacion(req, res) {
 
     await cliente.query("commit");
 
-    res
-      .status(201)
-      .json({
-        cod: 201,
-        msj: "Publicacion creada!",
-        datos: { ...publicacion, imagenes },
-      });
+    res.status(201).json({
+      cod: 201,
+      msj: "Publicacion creada!",
+      datos: { ...publicacion, imagenes },
+    });
   } catch (error) {
     await cliente.query("rollback");
     console.error("Error al crear una publicacion", error);
@@ -76,6 +74,55 @@ export async function crearPublicacion(req, res) {
       .json({ cod: 500, msj: "Error al crear una publicacion", datos: null });
   } finally {
     cliente.release();
+  }
+}
+
+export async function obtenerDetalles(req, res) {
+  try {
+    const { pu_id } = req.params;
+
+    const detalles = await modeloPublicacion.visualizarDetalles(pu_id);
+
+    if (!detalles || detalles.length === 0) {
+      return res.status(404).json({
+        cod: 404,
+        msj: "Problema al obtener los detalles.",
+        datos: null,
+      });
+    }
+
+    const imagenes = await modeloPublicacion.obtenerListaImagenes(pu_id);
+
+    if (!imagenes || imagenes.length === 0) {
+      return res.status(404).json({
+        cod: 404,
+        msj: "Problema al obtener las imagenes.",
+        datos: null,
+      });
+    }
+
+    const etiquetas = await modeloPublicacion.obtenerListaEtiquetas(pu_id);
+
+    if (!etiquetas || etiquetas.length === 0) {
+      return res.status(404).json({
+        cod: 404,
+        msj: "Problema al obtener las etiquetas.",
+        datos: null,
+      });
+    }
+
+    res.status(200).json({
+      cod: 200,
+      msj: "Exito",
+      datos: { ...detalles, imagenes, etiquetas },
+    });
+  } catch (error) {
+    console.error("Error obteniendo los detalles de la publicacion: ", error);
+    res.status(500).json({
+      cod: 500,
+      msj: "Error obteniendo los detalles",
+      datos: null,
+    });
   }
 }
 

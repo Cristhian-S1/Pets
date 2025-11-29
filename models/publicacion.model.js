@@ -61,6 +61,36 @@ export async function insertarImagenes(cliente, pu_id, urls) {
   return results;
 }
 
+export async function visualizarDetalles(pu_id) {
+  const resultado = await pool.query(
+    `select pu_id, pu_titulo, 
+    pu_descripcion, pu_image, pu_fecha, pu_estado, pu_ubicacion from publicacion
+where pu_id = $1`,
+    [pu_id]
+  );
+
+  return resultado.rows[0];
+}
+
+export async function obtenerListaImagenes(pu_id) {
+  const resultado = await pool.query(
+    `select * from publicacion_imagen where pu_id = $1`,
+    [pu_id]
+  );
+
+  return resultado.rows;
+}
+
+export async function obtenerListaEtiquetas(pu_id) {
+  const resultado = await pool.query(
+    `select et_nombre from etiqueta
+join publicacion_etiqueta using(et_id) where pu_id = $1`,
+    [pu_id]
+  );
+
+  return resultado.rows;
+}
+
 export async function getAllPosts() {
   const resultado = await pool.query(`
     SELECT 
