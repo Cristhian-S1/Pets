@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjQyOTc3NDUsImV4cCI6MTc2NDMwMTM0NX0.ubrj54mxnAGfCS6JPWfsFR8oaqLF9rTjUcEVwg4bNFU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpYUBnb21lei5jb20iLCJjb250YWN0byI6OTExMTExMTExLCJpYXQiOjE3NjQ0MzcxNzUsImV4cCI6MTc2NDQ0MDc3NX0.OKhd0JwIQ6j7NhDlUoW0UnwLyxCHomF9zxLjJ-0MDJI
 
 ###Obtener todas las publicaciones
 POST http://localhost:3000/pets/auth/login
@@ -36,10 +36,14 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "pu_titulo": "Triteza se escapo",
-    "pu_descripcion": "tristeza esta triste",
-    "pu_ubicacion": "Bolivia, la paz",
-    "pu_imagen": "sad.png"
+    "pu_titulo": "Nuevo",
+    "pu_descripcion": "Lo mas nuevo",
+    "pu_ubicacion": "Lo novedoso",
+    "pu_imagen": "nuevo.png",
+    "pu_imagenes": [
+        "new2.png",
+        "new3.png"
+    ]
 }
 
 

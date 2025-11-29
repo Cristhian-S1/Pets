@@ -21,13 +21,14 @@ using ( us_id )
 };
 
 export async function insertarPublicacion(
+  cliente,
   pu_titulo,
   pu_descripcion,
   pu_imagen,
   pu_ubicacion,
   us_id
 ) {
-  const resultado = await pool.query(
+  const resultado = await cliente.query(
     `insert into publicacion (   
    pu_titulo,
    pu_descripcion,
@@ -42,6 +43,22 @@ export async function insertarPublicacion(
   );
 
   return resultado.rows[0];
+}
+
+export async function insertarImagenes(cliente, pu_id, urls) {
+  const results = [];
+
+  for (const url of urls) {
+    const { rows } = await cliente.query(
+      `INSERT INTO publicacion_imagen (pu_id, pui_url)
+       VALUES ($1, $2)
+       RETURNING *;`,
+      [pu_id, url]
+    );
+    results.push(rows[0]);
+  }
+
+  return results;
 }
 
 export async function getAllPosts() {
@@ -72,9 +89,9 @@ export async function getAllPosts() {
         p.pu_id, us_nombre_completo, u.us_contacto
   `);
   return resultado.rows;
-};
+}
 
 export async function getAllTags() {
-    const resultado = await pool.query(`select * from etiqueta`);
-    return resultado.rows;
-};
+  const resultado = await pool.query(`select * from etiqueta`);
+  return resultado.rows;
+}
