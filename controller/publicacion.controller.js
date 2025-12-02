@@ -117,7 +117,7 @@ export async function obtenerDetalles(req, res) {
 
     const imagenes = await modeloPublicacion.obtenerListaImagenes(pu_id);
 
-    if (!imagenes || imagenes.length === 0) {
+    if (!imagenes) {
       return res.status(404).json({
         cod: 404,
         msj: "Problema al obtener las imagenes.",

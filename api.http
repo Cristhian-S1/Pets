@@ -31,7 +31,7 @@ Authorization: Bearer {{token}}
 GET http://localhost:3000/pets/publicaciones
 
 ###Obtener todas las publicaciones
-GET http://localhost:3000/pets/verDetalles/1
+GET http://localhost:3000/pets/verDetalles/10
 
 ###Crear una publicacion
 POST http://localhost:3000/pets/publicaciones/crear
