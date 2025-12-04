@@ -4,8 +4,9 @@ import {
   getPublicaciones,
   getAllPostsController,
   getAllTagsController,
-  obtenerDetalles,
+  obtenerDetalles
 } from "../controller/publicacion.controller.js";
+import { actualizarPerfil, perfilUsuario } from "../controller/usuario.controller.js"; 
 import { protegido, login, register } from "../controller/auth.controller.js";
 import { verificarToken } from "../verificador.token.js";
 
@@ -15,6 +16,9 @@ export const petsRouter = Router();
 petsRouter.post("/publicaciones/crear", verificarToken, crearPublicacion);
 petsRouter.get("/publicaciones", getPublicaciones);
 petsRouter.get("/verDetalles/:pu_id", obtenerDetalles);
+petsRouter.get("/perfil", verificarToken, perfilUsuario);
+petsRouter.put("/perfil", verificarToken, actualizarPerfil);
+
 
 petsRouter.get("/posts", getAllPostsController);
 petsRouter.get("/tags", getAllTagsController);
