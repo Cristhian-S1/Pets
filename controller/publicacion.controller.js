@@ -140,6 +140,27 @@ export async function obtenerPublicacionesPorUsuario(req, res) {
   }
 }
 
+export async function cambiarEstadoPublicacion(req, res) {
+  try {
+    const { pu_id } = req.params;
+    const { pu_estado } = req.body;
+
+    if (!pu_id || pu_estado === undefined) {
+      return res.status(400).json({ error: "Faltan datos requeridos (id o estado)" });
+    }
+
+    const resultado = await modeloPublicacion.actualizarEstadoPublicacion(pu_id, pu_estado);
+
+    if (!resultado) {
+      return res.status(404).json({ error: "Publicación no encontrada o no se pudo actualizar" });
+    }
+
+    return res.status(200).json(resultado);
+  } catch (error) {
+    console.error("Error en controller:", error);
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
 
 export async function getAllTagsController(req, res) {
   try {

@@ -160,3 +160,38 @@ export async function obtenerPublicacionesPorUsuario(cliente, idUsuario) {
   const res = await cliente.query(query, [idUsuario]);
   return res.rows;
 }
+
+export async function actualizarEstadoPublicacion(pu_id, pu_estado) {
+  try {
+    const resultado = await pool.query(
+      `UPDATE publicacion
+       SET pu_estado = $1
+       WHERE pu_id = $2
+       RETURNING pu_id, pu_estado`,
+      [pu_estado, pu_id]
+    );
+    return resultado.rows[0];
+  } catch (error) {
+    console.error("Error en modelo actualizarEstadoPublicacion:", error);
+    throw error;
+  }
+}
+
+
+export async function actualizarPerfilUsuario(us_id, us_nombre, us_apellido, us_contacto) {
+  try {
+    const resultado = await pool.query(
+      `UPDATE usuarios
+       SET us_nombre = $1,
+           us_apellido = $2,
+           us_contacto = $3
+       WHERE us_id = $4
+       RETURNING us_id, us_nombre, us_apellido, us_email, us_contacto`,
+      [us_nombre, us_apellido, us_contacto, us_id]
+    );
+    return resultado.rows[0]; // devuelve usuario actualizado
+  } catch (error) {
+    console.error("Error en modelo actualizarPerfilUsuario:", error);
+    throw error;
+  }
+}

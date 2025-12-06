@@ -5,7 +5,8 @@ import {
   getAllPostsController,
   getAllTagsController,
   obtenerDetalles,
-  obtenerPublicacionesPorUsuario
+  obtenerPublicacionesPorUsuario,
+  cambiarEstadoPublicacion
 } from "../controller/publicacion.controller.js";
 import { actualizarPerfil, perfilUsuario } from "../controller/usuario.controller.js";
 import { protegido, login, register } from "../controller/auth.controller.js";
@@ -23,6 +24,7 @@ petsRouter.put("/perfil", verificarToken, actualizarPerfil);
 
 petsRouter.get("/posts", getAllPostsController);
 petsRouter.get("/my-posts", verificarToken, obtenerPublicacionesPorUsuario);
+petsRouter.put("/my-posts/:pu_id", verificarToken, cambiarEstadoPublicacion);
 petsRouter.get("/tags", getAllTagsController);
 
 petsRouter.post("/auth/login", login);
